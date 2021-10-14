@@ -1,0 +1,170 @@
+.center {
+  text-align: center;
+  color: snow;
+  background: black;
+
+  font-family: "Lucida Grande";
+}
+
+.states :hover {
+  fill: gold;
+}
+
+.state-borders {
+  fill: none;
+  stroke: black;
+  stroke-width: 0.9px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+
+.d3-tip {
+  background: aliceblue;
+  opacity: 3.0;
+  border: solid 5px black;
+  border-radius: 10px;
+}
+
+
+.centerDiv
+{
+  width: 60%;
+  height:200px;
+  margin: 0 auto;
+  background-color: snow ;
+}
+
+
+
+.axisline line{
+  stroke: gray;
+}
+
+.axisline path{
+  stroke: gray;
+}
+
+.axisline text{
+  fill: gray;
+}
+
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 10px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 75px; /* Set a specific slider handle width */
+  height: 10px; /* Slider handle height */
+  background: orange; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.button {
+  background-color: orange;
+  border: none;
+  color: white;
+  padding: 1px 178px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: left;
+}
+
+.button2 {
+  background-color: orange;
+  border: none;
+  color: white;
+  padding: 1px 185px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  float: left;
+}
+
+
+.dropbtn {
+  background-color: orange;
+  color: white;
+  padding: 2px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: orange}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.map{
+  width: 1420px;
+  height: 600px;
+  border: 1px solid black;
+  background: black
+}
+
+#slidecontainer{
+  text-align: center
+}
+
+#date{
+  color: white;
+}
+
+.buttoncontainer{
+  text-align: center;
+  border: 1px solid
+}
