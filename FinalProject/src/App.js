@@ -5,17 +5,38 @@ import Axios from 'axios';
 
 
 function App() {
-    const [table, setTable] = useState([]);
+    const [USAdata, setUSAdata] = useState([]);
+    const [Statedata, setStatedata] = useState([]);
+    const [Countydata, setCountydata] = useState([]);
 
-    const getTable = () => {
-        Axios.get("http://localhost:5000/Data").then((response) =>{
-            setTable(response.data)
+    const getUSA = () => {
+        Axios.get("http://localhost:5000/USA").then((response) =>{
+            setUSAdata(response.data)
             console.log(response.data)
         });
     }
 
+    const getState = () => {
+        Axios.get("http://localhost:5000/State").then((response) =>{
+            setStatedata(response.data)
+            console.log(response.data)
+        });
+    }
+
+    const getCounty = () => {
+        Axios.get("http://localhost:5000/County").then((response) =>{
+            setCountydata(response.data)
+            console.log(response.data)
+        });
+    }
+
+
     return (
         <body>
+        <button onClick={getUSA}>Show USA</button>
+        <button onClick={getState}>Show State</button>
+        <button onClick={getCounty}>Show County</button>
+
             <div>
                 <h1 className="center">United States COVID-19 Interactive Dashboard</h1>
 

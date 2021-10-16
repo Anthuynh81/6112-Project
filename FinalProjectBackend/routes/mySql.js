@@ -17,23 +17,86 @@ const con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
-    database: 'sprint0'
+    database: 'covid'
 });
 
-app.get('/Data', (req, res) => {
-    con.query('SELECT * FROM testTable', (err, rows) => {
+app.get('/USA', (req, res) => {
+    con.query('SELECT * FROM usadata', (err, rows) => {
         if(err) throw err;
         const table = [];
         rows.forEach( (row) => {
             const tableRow = {
-                emplId: row.EmplID,
-                firstName: row.FirstName,
-                lastName: row.LastName,
-                phoneNum: row.Phone,
-                age: row.Age
+                ID: row.ID,
+                Updated: row.Updated,
+                Confirmed: row.Confirmed,
+                ConfirmedChange: row.ConfirmedChange,
+                Deaths: row.Deaths,
+                DeathsChanged: row.DeathsChanged,
+                Recovered: row.Recovered,
+                RecoveredChange: row.RecoveredChange,
+                Latitude: row.Latitude,
+                Longitude: row.Longitude,
+                Country_Region: row.Country_Region,
+                AdminRegion1: row.AdminRegion1,
+                AdminRegion2: row.AdminRegion2
             }
             table.push(tableRow)
         })
+        console.log(table)
+        res.send(table);
+    })
+})
+
+app.get('/State', (req, res) => {
+    con.query('SELECT * FROM statedata', (err, rows) => {
+        if(err) throw err;
+        const table = [];
+        rows.forEach( (row) => {
+            const tableRow = {
+                ID: row.ID,
+                Updated: row.Updated,
+                Confirmed: row.Confirmed,
+                ConfirmedChange: row.ConfirmedChange,
+                Deaths: row.Deaths,
+                DeathsChanged: row.DeathsChanged,
+                Recovered: row.Recovered,
+                RecoveredChange: row.RecoveredChange,
+                Latitude: row.Latitude,
+                Longitude: row.Longitude,
+                Country_Region: row.Country_Region,
+                AdminRegion1: row.AdminRegion1,
+                AdminRegion2: row.AdminRegion2
+            }
+            table.push(tableRow)
+        })
+        console.log(table)
+        res.send(table);
+    })
+})
+
+app.get('/County', (req, res) => {
+    con.query('SELECT * FROM countydata', (err, rows) => {
+        if(err) throw err;
+        const table = [];
+        rows.forEach( (row) => {
+            const tableRow = {
+                ID: row.ID,
+                Updated: row.Updated,
+                Confirmed: row.Confirmed,
+                ConfirmedChange: row.ConfirmedChange,
+                Deaths: row.Deaths,
+                DeathsChanged: row.DeathsChanged,
+                Recovered: row.Recovered,
+                RecoveredChange: row.RecoveredChange,
+                Latitude: row.Latitude,
+                Longitude: row.Longitude,
+                Country_Region: row.Country_Region,
+                AdminRegion1: row.AdminRegion1,
+                AdminRegion2: row.AdminRegion2
+            }
+            table.push(tableRow)
+        })
+        console.log(table)
         res.send(table);
     })
 })
