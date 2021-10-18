@@ -12,17 +12,18 @@ const StartDate = "01/21/2020";
 
 const StateChart = ({ setTooltipContent }) => {
     const [data, setData] = useState([]);
-
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         Axios.get("http://localhost:5000/State").then((response) =>{
-            setData(response.data.filter(o => o.Updated === StartDate))
+            setData(response.data.filter(o => o.Updated === StartDate));
+            setLoading(false);
         });
     }, []);
 
     return (
         <>
-            <ComposableMap data-tip="" projection="geoAlbersUsa" width={1000} height={800}>
+            <ComposableMap data-tip="" projection="geoAlbersUsa" width={800} height={600}>
                 <ZoomableGroup zoom={1}>>
                     <Geographies geography={geoUrl}>
                         {({ geographies }) =>
@@ -33,8 +34,18 @@ const StateChart = ({ setTooltipContent }) => {
                                     onMouseEnter={() => {
                                         const NAME = geo.properties.name;
                                         const state= data.find(o => o.AdminRegion1 === NAME);
-                                        setTooltipContent(`${geo.properties.name}</br>
+                                        if(loading){
+                                            setTooltipContent('Data is loading')
+                                        }else{
+                                            if (state){
+                                                setTooltipContent(`${geo.properties.name}</br>
                                                         Confirmed - ${state.Confirmed}</br>`);
+                                            } else {
+                                                setTooltipContent(`${geo.properties.name}</br>
+                                                        Confirmed - 0</br>`);
+                                            }
+
+                                        }
                                     }}
                                     onMouseLeave={() => {
                                         setTooltipContent("");

@@ -7,26 +7,26 @@ import {
 } from "react-simple-maps";
 import Axios from 'axios';
 
-const geoUrl = "https://gist.githubusercontent.com/mheydt/29eec003a4c0af362d7a/raw/d27d143bd75626647108fc514d8697e0814bf74b/us-states.json";
-const StartDate = "01/21/2020";
+const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json";
+const StartDate = "03/24/2020";
 
 const CountyChart = ({ setTooltipContent }) => {
     const [data, setData] = useState([]);
-    const [wait, setWait] = useState(true);
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
         Axios.get("http://localhost:5000/County").then((response) =>{
             setData(response.data.filter(o => o.Updated === StartDate))
-            setWait(false)
-        });
+            console.log(response.data.filter(o => o.Updated === StartDate))
+            setLoading(false);
+            });
     }, []);
-
 
 
     return (
         <>
-            <ComposableMap data-tip="" projection="geoAlbersUsa" width={1000} height={800}>
+            <ComposableMap data-tip="" projection="geoAlbersUsa" width={800} height={600}>
                 <ZoomableGroup zoom={1}>>
                     <Geographies geography={geoUrl}>
                         {({ geographies }) =>
@@ -36,9 +36,19 @@ const CountyChart = ({ setTooltipContent }) => {
                                     geography={geo}
                                     onMouseEnter={() => {
                                         const NAME = geo.properties.name;
-                                        const state= data.find(o => o.AdminRegion1 === NAME);
-                                        setTooltipContent(`${geo.properties.name}</br>
+                                        const state = data.find(o => o.AdminRegion2 === NAME);
+                                        if(loading){
+                                            setTooltipContent('Data is loading')
+                                        }else{
+                                            if (state){
+                                                setTooltipContent(`${geo.properties.name}</br>
                                                         Confirmed - ${state.Confirmed}</br>`);
+                                            } else {
+                                                setTooltipContent(`${geo.properties.name}</br>
+                                                        Confirmed - 0</br>`);
+                                            }
+
+                                        }
                                     }}
                                     onMouseLeave={() => {
                                         setTooltipContent("");

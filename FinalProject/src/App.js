@@ -20,13 +20,23 @@ function App() {
         setMap("County")
     }
 
+    function pickChart(map) {
+        if(map == "County"){
+            return <CountyChart setTooltipContent={setTooltip}/>
+        }else if(map == "State"){
+            return <StateChart setTooltipContent={setTooltip}/>
+        }else{
+            return <USAChart setTooltipContent={setTooltip}/>
+        }
+    }
+
     return (
         <body>
             <div>
                 <h1 className="center">United States COVID-19 Interactive Dashboard</h1>
 
                 United States Map:<br/>
-                <StateChart setTooltipContent={setTooltip}/>
+                {pickChart(map)}
                 <ReactTooltip html={true}>{toolTip}</ReactTooltip>
                 <h3 className="center">{map}</h3>
                 <div className="buttoncontainer">
