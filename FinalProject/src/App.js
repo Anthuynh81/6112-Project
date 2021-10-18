@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
 import {useState} from "react";
-import Chart2 from "./Chart2";
+import StateChart from "./StateChart";
 import ReactTooltip from "react-tooltip";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
                 <h1 className="center">United States COVID-19 Interactive Dashboard</h1>
 
                 United States Map:<br/>
-                <Chart2 setTooltipContent={setTooltip}/>
+                <StateChart setTooltipContent={setTooltip}/>
                 <ReactTooltip html={true}>{toolTip}</ReactTooltip>
                 <h3 className="center">{map}</h3>
                 <div className="buttoncontainer">
