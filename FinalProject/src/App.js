@@ -2,6 +2,8 @@ import './App.css';
 import React from "react";
 import {useState} from "react";
 import StateChart from "./StateChart";
+import CountyChart from "./CountyChart";
+import USAChart from "./USAChart";
 import ReactTooltip from "react-tooltip";
 
 function App() {
