@@ -9,6 +9,7 @@ import ReactTooltip from "react-tooltip";
 function App() {
     const [toolTip, setTooltip] = useState("");
     const [map, setMap] = useState("USA");
+    const [slider, setSlider] = useState(0)
 
     const setUSA = () => {
         setMap("USA")
@@ -38,7 +39,7 @@ function App() {
                 United States Map:<br/>
                 {pickChart(map)}
                 <ReactTooltip html={true}>{toolTip}</ReactTooltip>
-                <h3 className="center">{map}</h3>
+                <h3 className="center">{slider}</h3>
                 <div className="buttoncontainer">
                     <button type="button" className="button" onClick={setCounty}>County Level Map</button>
                     <button type="button" className="button" onClick={setState}>State Level Map</button>
