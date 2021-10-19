@@ -8,7 +8,7 @@ import {
 import Axios from 'axios';
 
 const geoUrl = "https://gist.githubusercontent.com/mheydt/29eec003a4c0af362d7a/raw/d27d143bd75626647108fc514d8697e0814bf74b/us-states.json";
-const StartDate = "01/21/2020";
+const StartDate = "03/24/2020";
 
 const StateChart = ({ setTooltipContent }) => {
     const [data, setData] = useState([]);

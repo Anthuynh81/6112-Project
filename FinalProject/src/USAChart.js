@@ -8,7 +8,7 @@ import {
 import Axios from 'axios';
 
 const geoUrl =   "/custom.geo.json";
-const StartDate = "01/23/2020";
+const StartDate = "03/24/2020";
 
 const USAChart = ({ setTooltipContent }) => {
     const [data, setData] = useState([]);
