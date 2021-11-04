@@ -21,7 +21,7 @@ const con = mysql.createConnection({
 });
 
 app.get('/USA', (req, res) => {
-    con.query('SELECT * FROM usadata', (err, rows) => {
+    con.query('SELECT * FROM usadata WHERE Updated = ?', [req.query.date], (err, rows) => {
         if(err) throw err;
         const table = [];
         rows.forEach( (row) => {
@@ -48,7 +48,7 @@ app.get('/USA', (req, res) => {
 })
 
 app.get('/State', (req, res) => {
-    con.query('SELECT * FROM statedata', (err, rows) => {
+    con.query('SELECT * FROM statedata WHERE Updated = ?', [req.query.date], (err, rows) => {
         if(err) throw err;
         const table = [];
         rows.forEach( (row) => {
@@ -75,7 +75,7 @@ app.get('/State', (req, res) => {
 })
 
 app.get('/County', (req, res) => {
-    con.query('SELECT * FROM countydata', (err, rows) => {
+    con.query('SELECT * FROM countydata WHERE Updated = ?', [req.query.date], (err, rows) => {
         if(err) throw err;
         const table = [];
         rows.forEach( (row) => {

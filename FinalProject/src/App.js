@@ -4,16 +4,20 @@ import {useState} from "react";
 import StateChart from "./StateChart";
 import CountyChart from "./CountyChart";
 import USAChart from "./USAChart";
-import ReactTooltip from "react-tooltip";
 import { Slider } from '@material-ui/core';
-import * as d3 from 'd3'
 
 function App() {
     const startDate = new Date(2020,0,23);
     const [toolTip, setTooltip] = useState("");
     const [map, setMap] = useState("USA");
     const [slider, setSlider] = useState(0);
-    const [date, setDate] = useState(startDate.toISOString().split('T')[0]);
+    const [date, setDate] = useState(startDate.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+    }));
+
+
     const setUSA = () => {
         setMap("USA")
     }
@@ -25,32 +29,28 @@ function App() {
     }
 
     const changeValue = (event, value) =>{
-        const millisecondsPerDay = 24 * 60 * 60 * 1000;
         setSlider(value);
         const newDate = new Date(startDate);
         newDate.setDate(startDate.getDate() + slider);
         console.log(newDate);
-        setDate(newDate.toISOString().split('T')[0]);
-    }
-
-    function pickChart(map) {
-        if(map == "County"){
-            return <CountyChart setTooltipContent={setTooltip}/>
-        }else if(map == "State"){
-            return <StateChart setTooltipContent={setTooltip}/>
-        }else{
-            return <USAChart setTooltipContent={setTooltip}/>
-        }
+        setDate(newDate.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        }));
     }
 
     return (
         <body>
             <div>
-                <h1 className="center">United States COVID-19 Interactive Dashboard</h1>
+                <h1 className="center">United States COVID-19 Interactive Dashboard {map}</h1>
 
                 United States Map:<br/>
-                {pickChart(map)}
-                <ReactTooltip html={true}>{toolTip}</ReactTooltip>
+
+                <CountyChart setTooltipContent={setTooltip} map={map} date={date} toolTip={toolTip}/>
+                <StateChart setTooltipContent={setTooltip} map={map} date={date} toolTip={toolTip}/>
+                <USAChart setTooltipContent={setTooltip} map={map} date={date} toolTip={toolTip}/>
+
                 <h3 className="center">{date}</h3>
                 <Slider onChange={changeValue} className="slider" min={0} max={630} defaultValue={0} step={1}/>
                 <div className="buttoncontainer">
