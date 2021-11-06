@@ -61,7 +61,6 @@ function App() {
                 </div>
 
                 <Line />
-                <h3>DUDE</h3>
             </div>
         </body>
     );

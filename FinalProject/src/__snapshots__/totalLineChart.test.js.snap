@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`returns the line chart when called 1`] = `
+<div>
+  <h2>
+    Line Chart
+  </h2>
+  <canvas
+    height={150}
+    onClick={[Function]}
+    role="img"
+    width={300}
+  />
+</div>
+`;

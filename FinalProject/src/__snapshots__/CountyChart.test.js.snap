@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`returns null when map is not county 1`] = `null`;
+
+exports[`returns the chart when map is County 1`] = `
+<svg
+  className="rsm-svg "
+  data-tip=""
+  viewBox="0 0 800 600"
+>
+  <g>
+    <rect
+      fill="transparent"
+      height={600}
+      width={800}
+    />
+    <g
+      className="rsm-zoomable-group undefined"
+      transform="translate(0 0) scale(1)"
+    >
+      &gt;
+      <g
+        className="rsm-geographies "
+      />
+    </g>
+  </g>
+</svg>
+`;

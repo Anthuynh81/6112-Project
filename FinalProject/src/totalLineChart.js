@@ -15,9 +15,6 @@ function TotalLineChart() {
     const updatedColumn = (data) => data.map(x => x.Updated);
     const confirmedColumn = (data) => data.map(x => x.Confirmed);
 
-    console.log(updatedColumn(data))
-    console.log(confirmedColumn(data))
-
     const data1 = {
         labels: updatedColumn(data),
         datasets: [

@@ -27,6 +27,7 @@ const CountyChart = (props) => {
 
     useEffect(() => {
         Axios.get("http://localhost:5000/County", { params: {date: date}}).then((response) =>{
+            console.log(response)
             setData(response.data)
             setLoading(false);
             });
