@@ -21,30 +21,57 @@ const con = mysql.createConnection({
 });
 
 app.get('/USA', (req, res) => {
-    con.query('SELECT * FROM usadata WHERE Updated = ?', [req.query.date], (err, rows) => {
-        if(err) throw err;
-        const table = [];
-        rows.forEach( (row) => {
-            const tableRow = {
-                ID: row.ID,
-                Updated: row.Updated,
-                Confirmed: row.Confirmed,
-                ConfirmedChange: row.ConfirmedChange,
-                Deaths: row.Deaths,
-                DeathsChanged: row.DeathsChanged,
-                Recovered: row.Recovered,
-                RecoveredChange: row.RecoveredChange,
-                Latitude: row.Latitude,
-                Longitude: row.Longitude,
-                Country_Region: row.Country_Region,
-                AdminRegion1: row.AdminRegion1,
-                AdminRegion2: row.AdminRegion2
-            }
-            table.push(tableRow)
+    if(req.query.date != null){
+        con.query('SELECT * FROM usadata WHERE Updated = ?', [req.query.date], (err, rows) => {
+            if(err) throw err;
+            const table = [];
+            rows.forEach( (row) => {
+                const tableRow = {
+                    ID: row.ID,
+                    Updated: row.Updated,
+                    Confirmed: row.Confirmed,
+                    ConfirmedChange: row.ConfirmedChange,
+                    Deaths: row.Deaths,
+                    DeathsChanged: row.DeathsChanged,
+                    Recovered: row.Recovered,
+                    RecoveredChange: row.RecoveredChange,
+                    Latitude: row.Latitude,
+                    Longitude: row.Longitude,
+                    Country_Region: row.Country_Region,
+                    AdminRegion1: row.AdminRegion1,
+                    AdminRegion2: row.AdminRegion2
+                }
+                table.push(tableRow)
+            })
+            console.log(table)
+            res.send(table);
         })
-        console.log(table)
-        res.send(table);
-    })
+    }else {
+        con.query('SELECT * FROM usadata', (err, rows) => {
+            if (err) throw err;
+            const table = [];
+            rows.forEach((row) => {
+                const tableRow = {
+                    ID: row.ID,
+                    Updated: row.Updated,
+                    Confirmed: row.Confirmed,
+                    ConfirmedChange: row.ConfirmedChange,
+                    Deaths: row.Deaths,
+                    DeathsChanged: row.DeathsChanged,
+                    Recovered: row.Recovered,
+                    RecoveredChange: row.RecoveredChange,
+                    Latitude: row.Latitude,
+                    Longitude: row.Longitude,
+                    Country_Region: row.Country_Region,
+                    AdminRegion1: row.AdminRegion1,
+                    AdminRegion2: row.AdminRegion2
+                }
+                table.push(tableRow)
+            })
+            console.log(table)
+            res.send(table);
+        })
+    }
 })
 
 app.get('/State', (req, res) => {

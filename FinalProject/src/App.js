@@ -4,6 +4,7 @@ import {useState} from "react";
 import StateChart from "./StateChart";
 import CountyChart from "./CountyChart";
 import USAChart from "./USAChart";
+import Line from "./totalLineChart";
 import { Slider } from '@material-ui/core';
 
 function App() {
@@ -58,6 +59,9 @@ function App() {
                     <button type="button" className="button" onClick={setState}>State Level Map</button>
                     <button type="button" className="button" onClick={setUSA}>United States Map</button>
                 </div>
+
+                <Line />
+                <h3>DUDE</h3>
             </div>
         </body>
     );

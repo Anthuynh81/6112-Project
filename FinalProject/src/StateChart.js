@@ -32,7 +32,6 @@ const StateChart = (props) => {
         });
     }, [date]);
 
-
     if(props.map === "State"){
         return (
             <>
