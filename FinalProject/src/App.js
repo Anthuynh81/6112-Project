@@ -5,6 +5,7 @@ import StateChart from "./StateChart";
 import CountyChart from "./CountyChart";
 import USAChart from "./USAChart";
 import Line from "./totalLineChart";
+import DeathsLineChart from "./deathLineChart";
 import { Slider } from '@material-ui/core';
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
                 </div>
 
                 <Line />
+                <DeathsLineChart />
             </div>
         </body>
     );

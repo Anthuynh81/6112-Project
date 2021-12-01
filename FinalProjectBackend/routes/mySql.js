@@ -43,7 +43,6 @@ app.get('/USA', (req, res) => {
                 }
                 table.push(tableRow)
             })
-            console.log(table)
             res.send(table);
         })
     }else {
@@ -68,7 +67,6 @@ app.get('/USA', (req, res) => {
                 }
                 table.push(tableRow)
             })
-            console.log(table)
             res.send(table);
         })
     }
@@ -96,7 +94,6 @@ app.get('/State', (req, res) => {
             }
             table.push(tableRow)
         })
-        console.log(table)
         res.send(table);
     })
 })
@@ -120,6 +117,25 @@ app.get('/County', (req, res) => {
                 Country_Region: row.Country_Region,
                 AdminRegion1: row.AdminRegion1,
                 AdminRegion2: row.AdminRegion2
+            }
+            table.push(tableRow)
+        })
+        res.send(table);
+    })
+})
+
+app.get('/Vaccine', (req, res) => {
+    con.query('SELECT * FROM VACCINE WHERE CODE = "USA" AND DAY = (SELECT MAX(DAY) FROM VACCINE WHERE CODE = "USA")', (err, rows) => {
+        if(err) throw err;
+        const table = [];
+        rows.forEach( (row) => {
+            const tableRow = {
+                Entity: row.Entity,
+                Code: row.Code,
+                Day: row.Day,
+                Pfizer: row.Pfizer,
+                Moderna: row.Moderna,
+                JohnsonJohnson: row.JohnsonJohnson
             }
             table.push(tableRow)
         })
