@@ -6,6 +6,7 @@ import CountyChart from "./CountyChart";
 import USAChart from "./USAChart";
 import Line from "./totalLineChart";
 import DeathsLineChart from "./deathLineChart";
+import IndividualVaccineBarChart from "./individaulVaccineBarChart";
 import { Slider } from '@material-ui/core';
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
 
                 <Line />
                 <DeathsLineChart />
+                <IndividualVaccineBarChart />
             </div>
         </body>
     );
