@@ -2,14 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {Bar} from 'react-chartjs-2';
 import Axios from 'axios';
 
-function IndividualVaccineBarChart() {
+function TotalVaccineBarChart() {
     const [data, setData] = useState({
         Entity: "Empty",
         Code: "Empty",
         Day: "0",
-        Pfizer: "0",
-        Moderna: "0",
-        JohnsonJohnson: "0"
+        Vaccination: "0"
     });
 
     useEffect(() => {
@@ -20,10 +18,10 @@ function IndividualVaccineBarChart() {
         });
     }, []);
 
-    const labels = ['Pfizer', 'Moderna', 'Johnson & Johnson'];
+    const labels = ['Vaccinations'];
 
 
-    const datapoints = [data.Pfizer, data.Moderna, data.JohnsonJohnson]
+    const datapoints = [data.Pfizer + data.Moderna + data.JohnsonJohnson]
 
     const data1 = {
         labels,
@@ -45,4 +43,4 @@ function IndividualVaccineBarChart() {
     );
 }
 
-export default IndividualVaccineBarChart;
+export default TotalVaccineBarChart;

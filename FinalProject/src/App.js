@@ -7,6 +7,7 @@ import USAChart from "./USAChart";
 import Line from "./totalLineChart";
 import DeathsLineChart from "./deathLineChart";
 import IndividualVaccineBarChart from "./individaulVaccineBarChart";
+import TotalVaccineBarChart from "./totalVaccineBarChart";
 import { Slider } from '@material-ui/core';
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
     const [toolTip, setTooltip] = useState("");
     const [map, setMap] = useState("USA");
     const [slider, setSlider] = useState(0);
+    const [lineChart, setLineChart] = useState("Confirmed")
+    const [barChart, setBarChart] = useState("Manufacturer")
     const [date, setDate] = useState(startDate.toLocaleDateString("en-US", {
         year: "numeric",
         month: "2-digit",
@@ -21,6 +24,7 @@ function App() {
     }));
 
 
+    //Set state for map chart
     const setUSA = () => {
         setMap("USA")
     }
@@ -29,6 +33,38 @@ function App() {
     }
     const setCounty = () => {
         setMap("County")
+    }
+
+    //Set state for Bar chart
+    const setManufacturer = () => {
+        setLineChart("Manufacturer")
+    }
+    const setTotal = () => {
+        setLineChart("Total")
+    }
+
+    //Set state for line chart
+    const setConfirmed = () => {
+        setLineChart("Confirmed")
+    }
+    const setDeaths = () => {
+        setLineChart("Deaths")
+    }
+
+    const showLineChart = () => {
+        if(lineChart == "Confirmed"){
+            return <Line />
+        }else{
+            return <DeathsLineChart />
+        }
+    }
+
+    const showBarChart = () => {
+        if(lineChart == "Manufacturer"){
+            return <IndividualVaccineBarChart />
+        }else{
+            return <TotalVaccineBarChart />
+        }
     }
 
     const changeValue = (event, value) =>{
@@ -46,7 +82,7 @@ function App() {
     return (
         <body>
             <div>
-                <h1 className="center">United States COVID-19 Interactive Dashboard {map}</h1>
+                <h1 className="center">United States COVID-19 Interactive Dashboard</h1>
 
                 United States Map:<br/>
 
@@ -56,15 +92,29 @@ function App() {
 
                 <h3 className="center">{date}</h3>
                 <Slider onChange={changeValue} className="slider" min={0} max={630} defaultValue={0} step={1}/>
-                <div className="buttoncontainer">
+                <div className="buttoncontainer" style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
                     <button type="button" className="button" onClick={setCounty}>County Level Map</button>
                     <button type="button" className="button" onClick={setState}>State Level Map</button>
                     <button type="button" className="button" onClick={setUSA}>United States Map</button>
                 </div>
 
-                <Line />
-                <DeathsLineChart />
-                <IndividualVaccineBarChart />
+                <h1 className="center">Confirmed/Deaths Over Time</h1>
+
+                {showLineChart()}
+
+                <div className="buttoncontainer" style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+                    <button type="button" className="button" onClick={setConfirmed}>Confirmed Cases</button>
+                    <button type="button" className="button" onClick={setDeaths}>Deaths</button>
+                </div>
+
+                <h1 className="center">Vaccination Statistics</h1>
+
+                {showBarChart()}
+
+                <div className="buttoncontainer" style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+                    <button type="button" className="button" onClick={setManufacturer}>By Manufacturer</button>
+                    <button type="button" className="button" onClick={setTotal}>Total</button>
+                </div>
             </div>
         </body>
     );

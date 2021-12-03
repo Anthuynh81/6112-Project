@@ -127,7 +127,7 @@ app.get('/County', (req, res) => {
 app.get('/Vaccine', (req, res) => {
     con.query('SELECT * FROM VACCINE WHERE CODE = "USA" AND DAY = (SELECT MAX(DAY) FROM VACCINE WHERE CODE = "USA")', (err, rows) => {
         if(err) throw err;
-        const table = [];
+        let object = new Object();
         rows.forEach( (row) => {
             const tableRow = {
                 Entity: row.Entity,
@@ -137,10 +137,10 @@ app.get('/Vaccine', (req, res) => {
                 Moderna: row.Moderna,
                 JohnsonJohnson: row.JohnsonJohnson
             }
-            table.push(tableRow)
+            object = tableRow
         })
-        console.log(table)
-        res.send(table);
+        console.log(object)
+        res.send(object);
     })
 })
 
