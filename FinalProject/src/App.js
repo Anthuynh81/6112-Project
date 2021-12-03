@@ -37,10 +37,10 @@ function App() {
 
     //Set state for Bar chart
     const setManufacturer = () => {
-        setLineChart("Manufacturer")
+        setBarChart("Manufacturer")
     }
     const setTotal = () => {
-        setLineChart("Total")
+        setBarChart("Total")
     }
 
     //Set state for line chart
@@ -60,7 +60,7 @@ function App() {
     }
 
     const showBarChart = () => {
-        if(lineChart == "Manufacturer"){
+        if(barChart == "Manufacturer"){
             return <IndividualVaccineBarChart />
         }else{
             return <TotalVaccineBarChart />
